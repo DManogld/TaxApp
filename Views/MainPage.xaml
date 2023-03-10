@@ -8,16 +8,18 @@
                              Padding="30,0"
                              >
 
-            <Label Text="Geben Sie einen Brutto-oder Nettobetrag ein und lassen Sie sich die Umsatzsteuer errechnen!"
+            <Label 
+                   Text="Geben Sie einen Brutto-oder Nettobetrag ein und lassen Sie sich die Umsatzsteuer errechnen!"
                    SemanticProperties.HeadingLevel="Level1"
                    FontSize="15"
                    HorizontalOptions="Center"
                    BackgroundColor="White"
                    Padding="5" />
 
-            <Entry Placeholder="..CHF"
+            <Entry x:Name="Entry"
+                    Placeholder="..CHF"
                    Keyboard="Numeric"
-                   Text="{Binding Ergebnis.Betrag, Mode=TwoWay}" />
+                   Text="{Binding Ergebnis.Betrag,Mode=OneWayToSource, UpdateSourceEventName=PropertyChanged}" />
 
             <StackLayout>
                 <RadioButton x:Name="RatioButton"
@@ -29,14 +31,15 @@
             </StackLayout>
 
             <Picker Title="Wählen Sie eine Option"
-                    x:Name="Picker"
-                    SelectedItem="{Binding Ergebnis.BetragUst}">
+                    x:Name="MyPicker"
+                    SelectedItem="{Binding Ergebnis.BetragUst, Mode=OneWayToSource, UpdateSourceEventName=PropertyChanged}"
+                    >
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>8.0</x:String>
                         <x:String>3.5</x:String>
                         <x:String>2.5</x:String>
-                    </x:Array>
+                    </x:Array> 
                 </Picker.ItemsSource>
             </Picker>
 

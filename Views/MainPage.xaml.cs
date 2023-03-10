@@ -13,14 +13,16 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         _viewModel = new TaxCalcViewModel();
         BindingContext = _viewModel;
+        MyPicker.SelectedIndex = 0;
     }
-
 
 
     private async void GoToSecondPage_Clicked(object sender, EventArgs e)
     {
+        if (Entry.Text == "0" || Entry.Text.Contains("-") == true) 
+            Application.Current.MainPage.DisplayAlert("Alert", $"An error occured. Ungültige Wert", "OK");
 
-        if (_viewModel.Ergebnis.IsNetto != true && Picker.SelectedItem != null)
+        if (_viewModel.Ergebnis.IsNetto != true && MyPicker.SelectedItem != null)
         {
             if (_viewModel.Ergebnis.BetragUst == 8.00)
             {

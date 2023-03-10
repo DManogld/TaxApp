@@ -14,15 +14,44 @@ namespace TaxApp.ViewModel
     {
         public ICommand ConfirmCommand { get; private set; }
         private Ergebnis _ergebnis;
-
-
         private object _selectedPickerItem;
+        private string _isNetto;
+        public string IsNetto
+        {
+            get { return _isNetto; }
+            set
+            {
+                _isNetto = value;
+                OnPropertyChanged(nameof(IsNetto));
+            }
+        }
 
+        private string _prozent;
+        public string Prozent
+        {
+            get { return _prozent; }
+            set
+            {
+                _prozent = value;
+                OnPropertyChanged(nameof(Prozent));
+            }
+        }
+
+        private string _betrag;
+        public string Betrag
+        {
+            get { return _betrag; }
+            set
+            {
+                _betrag = value;
+                OnPropertyChanged(nameof(Betrag));
+            }
+        }
 
         public TaxCalcViewModel()
         {
             _ergebnis = new Ergebnis();
-            ConfirmCommand = new Command(() => CanConfirm());
+
         }
 
 
@@ -43,20 +72,20 @@ namespace TaxApp.ViewModel
             {
                 _selectedPickerItem = value;
                 OnPropertyChanged(nameof(SelectedPickerItem));
-                ((Command)ConfirmCommand).ChangeCanExecute();
+
             }
         }
 
-        private bool CanConfirm()
-        {
-            return SelectedPickerItem != null;
-        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+          
         }
     }
 }
