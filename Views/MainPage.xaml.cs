@@ -29,26 +29,31 @@ public partial class MainPage : ContentPage
             }
             else if(_viewModel.Ergebnis.BetragUst == 3.5)
             {
+                _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag, 2);
                 _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag * 1.035f);
             }
             else if (_viewModel.Ergebnis.BetragUst == 2.5)
             {
-                _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag * 1.25f);
+                _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag, 2);
+                _viewModel.Ergebnis.BetragNetto = (float)Math.Round(_viewModel.Ergebnis.Betrag * 1.25f);
             }
         }
         else
         {
             if (_viewModel.Ergebnis.BetragUst == 8.00)
             {
-                _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag * 0.8, 2);
+                _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag, 2);
+                _viewModel.Ergebnis.BetragNetto = (float)Math.Round(_viewModel.Ergebnis.Betrag * 0.8, 2);
             }
             else if (_viewModel.Ergebnis.BetragUst == 3.5)
             {
+                _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag, 2);
                 _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag * 0.35 ,2);
             }
             else if (_viewModel.Ergebnis.BetragUst == 2.5)
             {
-                _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag * 0.25, 2);
+                _viewModel.Ergebnis.BetragBrutto = (float)Math.Round(_viewModel.Ergebnis.Betrag, 2);
+                _viewModel.Ergebnis.BetragNetto = (float)Math.Round(_viewModel.Ergebnis.Betrag * 0.25, 2);
             }
         }
         
